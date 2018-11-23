@@ -1,0 +1,15 @@
+.form-inline {
+    padding: 20px 0;
+}
+
+.table-hover>tbody>tr:hover {
+    cursor: pointer;
+    background: #9999FF;
+    
+}
+
+.pagination {
+    padding: 20px 20px 0 0;
+    display: flex;  
+    justify-content: flex-end;
+}

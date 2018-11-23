@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/* CSS Document */
+/* html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,img,span,table,form,input,textarea { margin:0; padding:0;} */
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td {
+  margin: 0;
+  padding: 0; }
+
+.noborder, img {
+  border: none; }
+
+ul, ol {
+  list-style: none; }
+
+body {
+  font-size: 12px;
+  /* font-family: "微软雅黑","宋体",Arial;
+   */
+   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+i, em {
+  font-style: normal; }
+
+b, strong, h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+
+a {
+  text-decoration: none;
+  }
+
+
+.int {
+  text-indent: 2em; }
+
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
+
+.clearfix:after {
+  content: "";
+  display: block;
+  visibility: hidden;
+  overflow: hidden;
+  clear: both;
+  height: 0;
+  font-size: 0; }
+
+img {
+  border: 0; }
+

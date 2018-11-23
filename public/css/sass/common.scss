@@ -1,0 +1,89 @@
+$bdColorArr: (rgb(211, 211, 211));
+
+// =============================以上公共调用样式
+
+html,
+body {
+  height: 100%;
+  background: url("/images/bg.jpg");
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  // background:rgba(255,255,255,.8);
+  background: #fff;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+.head {
+  height: 60px;
+  border-bottom: 1px solid nth($bdColorArr, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .logo {
+    color: rgb(22, 22, 22);
+    font-weight: bold;
+    padding-left: 35px;
+    font-size: 24px;
+    font-family: "微软雅黑";
+    &:hover {
+      background: none;
+      color: rgb(7, 86, 233);
+      transition: all 0.1s;
+      text-decoration: none;
+    }
+  }
+  .h-right {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    .btn {
+      margin-left: 10px;
+    }
+  }
+}
+
+.foot {
+  height: 50px;
+  line-height: 50px;
+  border-top: 1px solid nth($bdColorArr, 1);
+}
+
+// ==========================主体
+.main {
+  flex: 1;
+  display: flex;
+  height: 100%;
+}
+
+.m-left {
+  width: 250px;
+  height: 100%;
+  border-right: 1px solid nth($bdColorArr, 1);
+  border-left: 1px solid nth($bdColorArr, 1);
+  a {
+    color: #1d1a22;
+    font-size: 18px;
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+      background: #9999ff;
+      display: block;
+      transition: all 0.1s;
+      // font-size: 20px;
+    }
+  }
+  li {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid nth($bdColorArr, 1);
+    text-align: center;
+  }
+}
+
+.m-right {
+  flex: 1;
+  padding-left: 20px;
+  border-right: 1px solid nth($bdColorArr, 1);
+}

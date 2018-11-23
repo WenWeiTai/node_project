@@ -26,6 +26,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
+console.log('服务器登录成功');
 server.on('error', onError);
 server.on('listening', onListening);
 
