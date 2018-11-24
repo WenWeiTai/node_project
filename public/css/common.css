@@ -2,7 +2,7 @@
 html,
 body {
   height: 100%;
-  background: url("/images/bg.jpg");
+  color: #f4ffff;
 }
 
 .container {
@@ -11,32 +11,38 @@ body {
   flex-direction: column;
   background: #fff;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  font-family: "微软雅黑","宋体",Arial;
+}
+
+.rmPaddin {
+  padding: 0;
 }
 
 .head {
   height: 60px;
-  border-bottom: 1px solid lightgray;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: url("/images/home_h_bg.jpg");
 }
 .head .logo {
-  color: #161616;
+  color: #f4ffff;
   font-weight: bold;
   padding-left: 35px;
   font-size: 24px;
   font-family: "微软雅黑";
 }
 .head .logo:hover {
-  background: none;
-  color: #0756e9;
-  transition: all 0.1s;
+  color: #eee;
   text-decoration: none;
 }
 .head .h-right {
   display: flex;
   align-items: center;
   margin-right: 10px;
+}
+.head .h-right p {
+  color: #f4ffff;
 }
 .head .h-right .btn {
   margin-left: 10px;
@@ -45,7 +51,7 @@ body {
 .foot {
   height: 50px;
   line-height: 50px;
-  border-top: 1px solid lightgray;
+  background: #24292d;
 }
 
 .main {
@@ -55,48 +61,57 @@ body {
 }
 
 .m-left {
+  background: #283440;
   width: 250px;
   height: 100%;
-  border-right: 1px solid lightgray;
-  border-left: 1px solid lightgray;
 }
 .m-left a {
-  color: #1d1a22;
+  color: #f4ffff;
   font-size: 18px;
 }
 .m-left a:hover {
   text-decoration: none;
   color: #fff;
-  background: #9999ff;
+  background: #0661a7;
   display: block;
   transition: all 0.1s;
 }
 .m-left li {
   height: 50px;
   line-height: 50px;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid #1b2733;
   text-align: center;
 }
 
 .m-right {
   flex: 1;
-  padding-left: 20px;
-  border-right: 1px solid lightgray;
+  margin: 10px;
+  padding: 10px;
+  color: #24292d;
+  border: 2px solid #eee;
 }
 
 body {
-  background: url("/images/login_bg.jpg");
+  background: url("/images/login_bg1.jpg");
+  display: flex;
 }
 
 .marginAutoBox {
   display: flex;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  width: 40%;
+  height: 60%;
+  border-radius: 5%;
+  align-self: center;
+}
+
+.marginAutoBox_rsg {
+  height: 80%;
 }
 
 .marginAuto {
   align-self: center;
-  width: 300px;
 }
 .marginAuto .logo, .marginAuto .title {
   text-align: center;
@@ -108,9 +123,18 @@ body {
 }
 
 .whereGo {
-  float: right;
   display: block;
-  padding-right: 20px;
   margin-top: 10px;
   text-decoration: underline;
+  color: #0a5ca5;
+}
+.whereGo:hover {
+  color: #f00;
+}
+
+.p_marin {
+  margin-bottom: 10px;
+}
+.p_marin i {
+  margin-right: 5px;
 }

@@ -1,36 +1,40 @@
-$bdColorArr: (rgb(211, 211, 211));
+$bdColorArr: (#1b2733,#f4ffff);
 
 // =============================以上公共调用样式
 
 html,
 body {
   height: 100%;
-  background: url("/images/bg.jpg");
+  color: nth($bdColorArr, 2);
 }
 .container {
   height: 100%;
   display: flex;
   flex-direction: column;
-  // background:rgba(255,255,255,.8);
   background: #fff;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  font-family: "微软雅黑","宋体",Arial;
 }
+
+.rmPaddin {
+  padding: 0;
+}
+
 .head {
   height: 60px;
-  border-bottom: 1px solid nth($bdColorArr, 1);
+  // border-bottom: 1px solid nth($bdColorArr, 1);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: url('/images/home_h_bg.jpg');
   .logo {
-    color: rgb(22, 22, 22);
+    color: nth($bdColorArr, 2);
     font-weight: bold;
     padding-left: 35px;
     font-size: 24px;
     font-family: "微软雅黑";
     &:hover {
-      background: none;
-      color: rgb(7, 86, 233);
-      transition: all 0.1s;
+      color: #eee;
       text-decoration: none;
     }
   }
@@ -38,6 +42,9 @@ body {
     display: flex;
     align-items: center;
     margin-right: 10px;
+    p {
+      color: nth($bdColorArr, 2);
+    }
     .btn {
       margin-left: 10px;
     }
@@ -47,10 +54,11 @@ body {
 .foot {
   height: 50px;
   line-height: 50px;
-  border-top: 1px solid nth($bdColorArr, 1);
+  background: #24292d;
 }
 
 // ==========================主体
+
 .main {
   flex: 1;
   display: flex;
@@ -58,17 +66,18 @@ body {
 }
 
 .m-left {
+  background: #283440;
   width: 250px;
   height: 100%;
-  border-right: 1px solid nth($bdColorArr, 1);
-  border-left: 1px solid nth($bdColorArr, 1);
+  // border-right: 1px solid nth($bdColorArr, 1);
+  // border-left: 1px solid nth($bdColorArr, 1);
   a {
-    color: #1d1a22;
+    color: nth($bdColorArr, 2);
     font-size: 18px;
     &:hover {
       text-decoration: none;
       color: #fff;
-      background: #9999ff;
+      background: #0661a7;
       display: block;
       transition: all 0.1s;
       // font-size: 20px;
@@ -84,40 +93,66 @@ body {
 
 .m-right {
   flex: 1;
-  padding-left: 20px;
-  border-right: 1px solid nth($bdColorArr, 1);
+  margin: 10px;
+  padding: 10px;
+  color: #24292d;
+  border: 2px solid #eee;
+  
 }
 
 
 
 // ==========================================login、register marginAuto
 body {
-  background: url('/images/login_bg.jpg');
+  background: url('/images/login_bg1.jpg');
+  display: flex;
 }
 
 .marginAutoBox {
   // width: 500px;
   display: flex;
   justify-content: center;
-  background: rgba(255,255,255,.2); 
+  background: rgba(255,255,255,.1); 
+  width: 40%;
+  height: 60%;
+  // margin: 100px auto;
+  border-radius: 5%;
+  align-self: center;
 }
+
+.marginAutoBox_rsg {
+  height: 80%;
+}
+
 .marginAuto {
   align-self: center;
-  width: 300px;
   .logo,.title {
     text-align: center;
     margin: 20px 0;
+    // color: nth($bdColorArr, 2);
   }
 }
+
 
 .btn_margin {
   margin-top: 20px;
 }
 
 .whereGo {
-  float: right;
   display: block;
-  padding-right: 20px;
+  // padding: 0 20px;
   margin-top: 10px;
   text-decoration: underline;
+  color: #0a5ca5;
+  &:hover {
+    color: #f00;
+  }
+}
+
+.p_marin {
+  // color: nth($bdColorArr, 2);
+  margin-bottom: 10px;
+  i {
+    margin-right: 5px;
+  }
 }
