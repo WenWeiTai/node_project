@@ -83,3 +83,34 @@ body {
   padding-left: 20px;
   border-right: 1px solid lightgray;
 }
+
+body {
+  background: url("/images/login_bg.jpg");
+}
+
+.marginAutoBox {
+  display: flex;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.marginAuto {
+  align-self: center;
+  width: 300px;
+}
+.marginAuto .logo, .marginAuto .title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.btn_margin {
+  margin-top: 20px;
+}
+
+.whereGo {
+  float: right;
+  display: block;
+  padding-right: 20px;
+  margin-top: 10px;
+  text-decoration: underline;
+}

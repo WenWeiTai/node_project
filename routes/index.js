@@ -18,4 +18,15 @@ router.get('/brand.html',function(req,res){
   res.render('./brand');
 })
 
+router.get('/login.html',function(req,res){
+  res.render('./login');
+})
+
+router.get('/register.html',function(req,res){
+  res.render('./register');
+})
+
+
+
+
 module.exports = router;
