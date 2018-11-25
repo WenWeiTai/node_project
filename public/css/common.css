@@ -52,6 +52,7 @@ body {
   height: 50px;
   line-height: 50px;
   background: #24292d;
+  text-align: center;
 }
 
 .main {
@@ -195,7 +196,7 @@ body {
   margin: auto;
   z-index: 99;
   width: 500px;
-  height: 40%;
+  height: 60%;
   padding: 30px;
   border: 1px solid #f4ffff;
   background: rgba(255, 255, 255, 0.8);
@@ -207,6 +208,10 @@ body {
 .addItem_box .title {
   text-align: center;
   margin-bottom: 30px;
+}
+
+.addItem_box_brand {
+  height: 40%;
 }
 
 .btns {

@@ -26,7 +26,9 @@ router.get('/register.html',function(req,res){
   res.render('./register');
 })
 
-
+router.get(/.*/,function(req,res){
+  res.render('./index');
+})
 
 
 module.exports = router;
