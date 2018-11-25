@@ -58,6 +58,7 @@ body {
   flex: 1;
   display: flex;
   height: 100%;
+  background: #f8f8f8;
 }
 
 .m-left {
@@ -84,11 +85,22 @@ body {
 }
 
 .m-right {
+  position: relative;
   flex: 1;
-  margin: 10px;
-  padding: 10px;
   color: #24292d;
-  border: 2px solid #eee;
+}
+
+.masking {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 98;
+  display: none;
+}
+
+.mainR_box {
+  padding: 10px;
 }
 
 body {
@@ -137,4 +149,89 @@ body {
 }
 .p_marin i {
   margin-right: 5px;
+}
+
+.table {
+  text-align: center;
+}
+.table th {
+  text-align: center;
+  background: #eee;
+}
+.table .td-del {
+  color: red;
+}
+.table .setSize {
+  width: 100px;
+  height: 100px;
+}
+
+.form-inline {
+  padding: 20px 0;
+}
+
+.table-hover > tbody > tr:hover {
+  cursor: pointer;
+  background: #9999FF;
+}
+
+.pagination {
+  padding: 20px 20px 0 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add {
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.addItem_box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+  width: 500px;
+  height: 40%;
+  padding: 30px;
+  border: 1px solid #f4ffff;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5%;
+  border-radius: 5%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+.addItem_box .title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.btns {
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
+}
+.btns .btn {
+  outline: none;
+  width: 120px;
+  margin-left: 10px;
+}
+
+.setMargin {
+  margin-bottom: 30px;
+}
+
+.setCol-sm-2 {
+  padding: 0;
+}
+
+.table > tbody > tr > .setTDLineH {
+  line-height: 100px;
+}
+
+.table > tbody > tr > .setTDLineH_brand {
+  line-height: 53px;
 }
