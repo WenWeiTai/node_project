@@ -5,13 +5,18 @@ body {
   color: #f4ffff;
 }
 
+body {
+  background: url("/images/login_bg1.jpg");
+  display: flex;
+}
+
 .container {
   height: 100%;
   display: flex;
   flex-direction: column;
   background: #fff;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-  font-family: "微软雅黑","宋体",Arial;
+  font-family: "微软雅黑", "宋体", Arial;
 }
 
 .rmPaddin {
@@ -91,6 +96,10 @@ body {
   color: #24292d;
 }
 
+.mainR_box {
+  padding: 10px;
+}
+
 .masking {
   position: absolute;
   width: 100%;
@@ -98,15 +107,6 @@ body {
   background: rgba(0, 0, 0, 0.5);
   z-index: 98;
   display: none;
-}
-
-.mainR_box {
-  padding: 10px;
-}
-
-body {
-  background: url("/images/login_bg1.jpg");
-  display: flex;
 }
 
 .marginAutoBox {
@@ -126,7 +126,8 @@ body {
 .marginAuto {
   align-self: center;
 }
-.marginAuto .logo, .marginAuto .title {
+.marginAuto .logo,
+.marginAuto .title {
   text-align: center;
   margin: 20px 0;
 }
@@ -145,10 +146,10 @@ body {
   color: #f00;
 }
 
-.p_marin {
+.rgs_title {
   margin-bottom: 10px;
 }
-.p_marin i {
+.rgs_title i {
   margin-right: 5px;
 }
 
@@ -173,7 +174,7 @@ body {
 
 .table-hover > tbody > tr:hover {
   cursor: pointer;
-  background: #9999FF;
+  background: #9999ff;
 }
 
 .pagination {

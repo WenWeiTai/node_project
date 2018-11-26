@@ -1,4 +1,4 @@
-$bdColorArr: (#1b2733,#f4ffff);
+$bdColorArr: (#1b2733, #f4ffff);
 
 // =============================以上公共调用样式
 
@@ -7,25 +7,32 @@ body {
   height: 100%;
   color: nth($bdColorArr, 2);
 }
+
+body {
+  background: url("/images/login_bg1.jpg");
+  display: flex;
+}
+
 .container {
   height: 100%;
   display: flex;
   flex-direction: column;
   background: #fff;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-  font-family: "微软雅黑","宋体",Arial;
+  font-family: "微软雅黑", "宋体", Arial;
 }
 
 .rmPaddin {
   padding: 0;
 }
 
+// =========================头部
 .head {
   height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: url('/images/home_h_bg.jpg');
+  background: url("/images/home_h_bg.jpg");
   .logo {
     color: nth($bdColorArr, 2);
     font-weight: bold;
@@ -50,6 +57,7 @@ body {
   }
 }
 
+// =========================尾部
 .foot {
   height: 50px;
   line-height: 50px;
@@ -57,8 +65,8 @@ body {
   text-align: center;
 }
 
-// ==========================主体
 
+// ==========================主体
 .main {
   flex: 1;
   display: flex;
@@ -95,28 +103,24 @@ body {
   color: #24292d;
 }
 
+.mainR_box {
+  padding: 10px;
+}
+
 .masking {
   position: absolute;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 98;
-  display: none;  //---------------------------------------------------------------隐藏
-}
-.mainR_box {
-  padding: 10px;
+  display: none; // =========================蒙版隐藏
 }
 
 // ==========================================login、register marginAuto
-body {
-  background: url('/images/login_bg1.jpg');
-  display: flex;
-}
-
 .marginAutoBox {
   display: flex;
   justify-content: center;
-  background: rgba(255,255,255,.1); 
+  background: rgba(255, 255, 255, 0.1);
   width: 40%;
   height: 60%;
   border-radius: 5%;
@@ -129,12 +133,12 @@ body {
 
 .marginAuto {
   align-self: center;
-  .logo,.title {
+  .logo,
+  .title {
     text-align: center;
     margin: 20px 0;
   }
 }
-
 
 .btn_margin {
   margin-top: 20px;
@@ -150,24 +154,23 @@ body {
   }
 }
 
-.p_marin {
+.rgs_title {
   margin-bottom: 10px;
   i {
     margin-right: 5px;
   }
 }
 
-
 // 表格
 .table {
-  text-align: center; 
+  text-align: center;
   th {
-      text-align: center;
-      background: #eee;
+    text-align: center;
+    background: #eee;
   }
-  
+
   .td-del {
-      color: red;
+    color: red;
   }
   .setSize {
     width: 100px;
@@ -181,7 +184,7 @@ body {
 
 .table-hover > tbody > tr:hover {
   cursor: pointer;
-  background: #9999FF;
+  background: #9999ff;
 }
 
 .pagination {
@@ -189,7 +192,6 @@ body {
   display: flex;
   justify-content: flex-end;
 }
-
 
 // 新增
 .add {
@@ -203,16 +205,17 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  margin: auto; 
+  margin: auto;
   z-index: 99;
   width: 500px;
   height: 60%;
   padding: 30px;
   border: 1px solid nth($bdColorArr, 2);
-  background: rgba(255, 255, 255, .8);
-  border-radius: 5%;border-radius: 5%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5%;
+  border-radius: 5%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-  display: none; //---------------------------------------------------------------隐藏
+  display: none; //=========================增加框隐藏
 
   .title {
     text-align: center;
@@ -244,10 +247,10 @@ body {
 }
 
 // 手机管理跟品牌管理td的行高设置
-.table>tbody>tr>.setTDLineH {
+.table > tbody > tr > .setTDLineH {
   line-height: 100px;
 }
 
-.table>tbody>tr>.setTDLineH_brand {
+.table > tbody > tr > .setTDLineH_brand {
   line-height: 53px;
 }
