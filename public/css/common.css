@@ -52,6 +52,15 @@ body {
 .head .h-right .btn {
   margin-left: 10px;
 }
+.head .h-right .btnHide {
+  display: none;
+}
+.head .h-right .btnHide a {
+  color: #fff;
+}
+.head .h-right .btnHide a:hover {
+  text-decoration: none;
+}
 
 .foot {
   height: 50px;
@@ -113,14 +122,14 @@ body {
   display: flex;
   justify-content: center;
   background: rgba(255, 255, 255, 0.1);
-  width: 40%;
+  width: 45%;
   height: 60%;
   border-radius: 5%;
   align-self: center;
 }
 
 .marginAutoBox_rsg {
-  height: 80%;
+  height: 90%;
 }
 
 .marginAuto {
@@ -147,7 +156,9 @@ body {
 }
 
 .rgs_title {
-  margin-bottom: 10px;
+  position: relative;
+  margin-bottom: 5px;
+  font-size: 16px;
 }
 .rgs_title i {
   margin-right: 5px;

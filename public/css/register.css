@@ -1,0 +1,22 @@
+.errHint {
+  color: #3a3a3a;
+  padding-left: 5px;
+  padding-top: 5px;
+  font-size: 14px;
+}
+.errHint i {
+  color: #da0505;
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+.look {
+  color: #8297bd;
+  position: absolute;
+  right: 4px;
+  bottom: -31px;
+  cursor: pointer;
+}
+.look:hover {
+  color: #000;
+}

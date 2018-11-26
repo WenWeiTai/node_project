@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/login.css" />
     <link rel="stylesheet" href="/css/iconfont.css">
+    <link rel="stylesheet" href="/css/register.css">
     <title>注册</title>
   </head>
 
@@ -20,23 +21,29 @@
         <form class="form-horizontal">
           <div class="form-group">
             <p class="rgs_title"><i class="iconfont">&#xe663;</i>姓名:</p>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control username" />
+            <p class="errHint"><i>*</i>请输入2~4个中文字体</p>
           </div>
           <div class="form-group">
-            <p class="rgs_title"><i class="iconfont">&#xeae6;</i>密码:</p>
-            <input type="password" class="form-control" />
+            <p class="rgs_title"><i class="iconfont">&#xeae6;</i>密码:<i class="look iconfont" title='查看密码'>&#xe61c;</i></p>
+            
+            <input type="password" class="form-control pwd"/>
+            <p class="errHint"><i>*</i>请输入6~12位密码，不能以特殊字符或数字开头</p>
           </div>
           <div class="form-group">
             <p class="rgs_title"><i class="iconfont">&#xe6c4;</i>确认密码:</p>
             <input type="password" class="form-control" />
+            <p class="errHint"><i>*</i>请再次输入密码，两次密码需要一致</p>
           </div>
           <div class="form-group">
             <p class="rgs_title"><i class="iconfont">&#xe631;</i>昵称:</p>
             <input type="text" class="form-control" />
+            <p class="errHint"><i>*</i>请输入2~10位的昵称</p>
           </div>
           <div class="form-group">
             <p class="rgs_title"><i class="iconfont">&#xe610;</i>手机号:</p>
             <input type="text" class="form-control" />
+            <p class="errHint"><i>*</i>请输入有效的手机号码</p>
           </div>
           <div class="form-group">
               <div class="radio">
@@ -61,3 +68,5 @@
     </div>
   </body>
 </html>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/register.js"></script>

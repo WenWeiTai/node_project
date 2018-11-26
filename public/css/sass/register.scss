@@ -1,0 +1,25 @@
+// 正则验证
+.errHint {
+    color: rgb(58, 58, 58);
+    padding-left: 5px;
+    padding-top: 5px;
+    font-size: 14px;
+    i {
+        color: rgb(218, 5, 5);
+        font-weight: bold;
+        padding-right: 5px;
+    }
+}
+
+.look {
+    // float: right;
+    // padding-left: 10px;
+    color: #8297bd;
+    position: absolute;
+    right: 4px;
+    bottom: -31px;
+    cursor: pointer;
+    &:hover {
+        color: #000;
+    }
+}

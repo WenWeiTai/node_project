@@ -54,6 +54,15 @@ body {
     .btn {
       margin-left: 10px;
     }
+    .btnHide {
+      display: none;
+      a {
+        color: #fff;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 
@@ -121,14 +130,14 @@ body {
   display: flex;
   justify-content: center;
   background: rgba(255, 255, 255, 0.1);
-  width: 40%;
+  width: 45%;
   height: 60%;
   border-radius: 5%;
   align-self: center;
 }
 
 .marginAutoBox_rsg {
-  height: 80%;
+  height: 90%;
 }
 
 .marginAuto {
@@ -155,7 +164,9 @@ body {
 }
 
 .rgs_title {
-  margin-bottom: 10px;
+  position: relative;
+  margin-bottom: 5px;
+  font-size: 16px;
   i {
     margin-right: 5px;
   }
@@ -254,3 +265,4 @@ body {
 .table > tbody > tr > .setTDLineH_brand {
   line-height: 53px;
 }
+
