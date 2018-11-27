@@ -8,9 +8,9 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/users.html',function(req,res){
-  res.render('./users');
-})
+// router.get('/users.html',function(req,res){
+//   res.render('./users');
+// })
 
 router.get('/phone.html',function(req,res){
   res.render('./phone');
@@ -28,9 +28,9 @@ router.get('/register.html',function(req,res){
   res.render('./register');
 })
 
-router.get(/.*/,function(req,res){
-  res.render('./index');
-})
+// router.get(/.*/,function(req,res){
+//   res.render('./index');
+// })
 
 
 module.exports = router;

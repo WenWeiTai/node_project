@@ -45,7 +45,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <!-- <tr>
                     <th scope="row">1</th>
                     <td>wenweitai</td>
                     <td>温维太</td>
@@ -76,7 +76,25 @@
                         >删除</a
                       >
                     </td>
-                  </tr>
+                  </tr> -->
+                  <% for(var i = 0; i < userDb.length; i++) { %>
+                    <tr>
+                      <th scope="row"><%= i+1 %></th>
+                      <td><%= userDb[i].username %></td>
+                      <td><%= userDb[i].nickname %></td>
+                      <td><%= userDb[i].phone %></td>
+                      <td><%= userDb[i].sex %></td>
+                      <td><%= userDb[i].age %></td>
+                      <td><%= userDb[i].isAdmin %></td>
+                      <td>
+                        <a class="td-update" href="##">修改</a>&ensp;&ensp;<a
+                          class="td-del"
+                          href="##"
+                          >删除</a
+                        >
+                      </td>
+                    </tr>
+                  <% } %>
                 </tbody>
               </table>
             </div>
