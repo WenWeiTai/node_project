@@ -85,13 +85,14 @@
                       <td><%= userDb[i].phone %></td>
                       <td><%= userDb[i].sex %></td>
                       <td><%= userDb[i].age %></td>
-                      <td><%= userDb[i].isAdmin %></td>
+                      <td><%= userDb[i].isAdmin === true ? '是' : '否' %></td>
                       <td>
-                        <a class="td-update" href="##">修改</a>&ensp;&ensp;<a
-                          class="td-del"
-                          href="##"
-                          >删除</a
-                        >
+                        <a class="td-update" href="##">修改</a>&ensp;&ensp;
+                        <% if(userDb[i].isAdmin == false){ %>
+                          
+                          <a class="td-del" href="/delete?id=<%= userDb[i]._id %>">删除</a>
+
+                        <% } %>
                       </td>
                     </tr>
                   <% } %>

@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 //引入mongodb模块
 var MongoClient = require('mongodb').MongoClient;
+//引入async
+var async = require('async');
 //链接mongodb数据库地址
 var url = 'mongodb://127.0.0.1:27017';
 
@@ -38,7 +40,6 @@ router.get('/', function(req, res, next) {
         userDb : data
       })
     })
-    
     //关闭数据库
     client.close();
   })
@@ -103,9 +104,123 @@ router.post('/login',function(req,res){
       }
     })
     client.close();
-
   })
 
 })
+
+// 注册操作 localhost:3000/users/register
+router.post('/register',function(req,res){
+  var username = req.body.username;
+  var password = req.body.password;
+  var nickname = req.body.nickname;
+  var phone = parseInt(req.body.phone);
+  var age = parseInt(req.body.age);
+  var sex = req.body.sex;
+  var isAdmin = req.body.isAdmin === '是' ? true : false;
+
+  //接收的数据验证，以防通过第三方工具恶意请求
+  if(!username){
+    res.render('error',{
+      message : '账号不能为空',
+      error : new Error('账号不能为空')
+    })
+    return;
+  }
+  if(!password){
+    res.render('error',{
+      message : '密码不能为空',
+      error : new Error('密码不能为空')
+    })
+    return;
+  }
+
+  // console.log(username,password,nickname,phone,age,sex,isAdmin)
+  //连接数据库,查询用户名是否存在
+  MongoClient.connect(url,{ useNewUrlParser:true},function(err,client){
+    if(err){
+      res.render('error',{
+        message : '连接数据库失败',
+        error : err
+      })
+      return;
+    }
+
+    var db = client.db('nodeProject');
+    //这样直接插入数据库，控制不了用户不可重复，应该先查询数据库再做插入操作，因为异步操作，直接判断再添加，添加的步骤会形成回调地狱，需要用串行无关联来操作
+    /* db.collection('user').insertOne({
+      username : username,
+      password : password,
+      nickname : nickname,
+      phone : phone,
+      age : age,
+      sex : sex,
+      isAdmin : isAdmin
+    },function(err){
+      if(err){
+        res.render('error',{
+          message : '添加数据失败',
+          error : err
+        })
+        return;
+      }
+      res.redirect('/login.html');
+    })
+    client.close(); */
+
+    //串行无关联
+    async.series([
+      // 查询数据库
+      function(cb){
+        db.collection('user').find({
+          username : username
+        }).count(function(err,num){
+          if(err){
+            cb(err);
+          }else if(num > 0){
+            //查询有条数，证明已经注册过
+            cb(new Error('此用户已注册'));
+          }else{
+            //可以注册
+            cb(null);
+          }
+        })
+      },
+      function(cb){
+        // 插入数据库
+        db.collection('user').insertOne({
+          username : username,
+          password : password,
+          nickname : nickname,
+          phone : phone,
+          age : age,
+          sex : sex,
+          isAdmin : isAdmin
+        },function(err){
+          if(err){
+            cb(err)
+          }else{
+            cb(null)
+          }
+        })
+      }
+    ],function(err,result){
+      if(err){
+        res.render('error',{
+          message : '出错',
+          error : err
+        })
+      }else{
+        // console.log(result);
+        res.redirect('/login.html');
+      }
+      //插入成功之后关闭数据库
+      client.close();
+    })
+  })
+})
+
+
+// 删除数据 localhost:3000/users/delete
+
 
 module.exports = router;

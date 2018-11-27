@@ -19,11 +19,11 @@
     <div class="marginAuto">
       <h1 class="logo">WWT后台管理系统</h1>
       <h2 class="title">注册</h2>
-      <form class="form-horizontal">
+      <form class="form-horizontal" method="POST" action="/users/register">
         <div class="form-group">
           <p class="rgs_title"><i class="iconfont">&#xe663;</i>姓名:</p>
-          <input type="text" class="form-control username" />
-          <p class="errHint"><i>*</i>请输入2~4个中文字体</p>
+          <input type="text" class="form-control username" name="username" />
+          <p class="errHint"><i>*</i>请输入4~10位的用户名，可以是中文或字母</p>
         </div>
         
         <div class="form-group">
@@ -31,9 +31,9 @@
             <i class="iconfont">&#xeae6;</i>密码:<i class="lookpwd iconfont" title="查看密码">&#xe61c;</i>
           </p>
 
-          <input type="password" class="form-control pwd" />
+          <input type="password" class="form-control pwd" name="password"  />
           <p class="errHint">
-            <i>*</i>请输入6~12位密码，不能以特殊字符或数字开头
+            <i>*</i>请输入4~12位密码，不能以特殊字符或数字开头
           </p>
         </div>
         <div class="form-group">
@@ -45,27 +45,27 @@
         </div>
         <div class="form-group">
           <p class="rgs_title"><i class="iconfont">&#xe631;</i>昵称:</p>
-          <input type="text" class="form-control nickname" />
-          <p class="errHint"><i>*</i>请输入2~10位的昵称</p>
+          <input type="text" class="form-control nickname" name="nickname"/>
+          <p class="errHint"><i>*</i>昵称请输入2~4位的中文</p>
         </div>
         <div class="form-group">
           <p class="rgs_title"><i class="iconfont">&#xe610;</i>手机号:</p>
-          <input type="text" class="form-control phone" />
+          <input type="text" class="form-control phone" name="phone" />
           <p class="errHint"><i>*</i>请输入有效的手机号码</p>
         </div>
         <div class="form-group">
           <p class="rgs_title"><i class="iconfont">&#xe640;</i>年龄:</p>
-          <input type="text" class="form-control age" />
-          <p class="errHint"><i>*</i>请输入年龄</p>
+          <input type="text" class="form-control age" name="age" />
+          <p class="errHint">请输入年龄</p>
         </div>
         <div class="form-group">
           <div class="radio">
             <i class="rgs_title"><i class="iconfont">&#xe7f8;</i>性&ensp;&ensp;别:</i>
             <label>
-              <input type="radio" name="sex" checked />男
+              <input type="radio" name="sex" value="男" checked />男
             </label>
             <label>
-              <input type="radio" name="sex" />女
+              <input type="radio" name="sex" value="女" />女
             </label>
           </div>
         </div>
@@ -73,10 +73,10 @@
           <div class="radio">
             <i class="rgs_title"><i class="iconfont">&#xe63c;</i>管理员:</i>
             <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked />是
+              <input type="radio" name="isAdmin" value="是" />是
             </label>
             <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />否
+              <input type="radio" name="isAdmin" value="否" checked />否
             </label>
           </div>
         </div>

@@ -8,9 +8,9 @@ window.onload = function() {
     lookpwd: $(".lookpwd"),
     looksurepwd: $(".looksurepwd"),
 
-    reg_user: /^[\u4e00-\u9fa5]{2,4}$/,
-    reg_pwd: /^[a-zA-Z]\w{5,11}$/,
-    reg_nickname: /^([\u4e00-\u9fa5]|\w){2,10}$/,
+    reg_user: /^([\u4e00-\u9fa5]|\w){4,10}$/,
+    reg_pwd: /^[a-zA-Z]\w{3,11}$/,
+    reg_nickname: /^[\u4e00-\u9fa5]{2,4}$/,
     reg_phone: /^1[3-8]\d{9}$/
   };
   new RegRegister(obj);
