@@ -130,14 +130,14 @@ body {
   display: flex;
   justify-content: center;
   background: rgba(255, 255, 255, 0.1);
-  width: 45%;
+  width: 40%;
   height: 60%;
   border-radius: 5%;
   align-self: center;
 }
 
 .marginAutoBox_rsg {
-  height: 90%;
+  height: 95%;
 }
 
 .marginAuto {
@@ -145,7 +145,7 @@ body {
   .logo,
   .title {
     text-align: center;
-    margin: 20px 0;
+    margin: 10px 0;
   }
 }
 
@@ -155,7 +155,7 @@ body {
 
 .whereGo {
   display: block;
-  margin-top: 10px;
+  margin-top: 20px;
   text-decoration: underline;
   color: #0a5ca5;
   &:hover {
@@ -166,7 +166,7 @@ body {
 .rgs_title {
   position: relative;
   margin-bottom: 5px;
-  font-size: 16px;
+  // font-size: 16px;
   i {
     margin-right: 5px;
   }

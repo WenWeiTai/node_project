@@ -20,3 +20,7 @@
 .lookpwd:hover, .looksurepwd:hover {
   color: #000;
 }
+
+.form-group {
+  margin-bottom: 5px;
+}
