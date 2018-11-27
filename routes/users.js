@@ -4,6 +4,8 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 //引入async
 var async = require('async');
+//获取数据库_id
+var ObjectId = require('mongodb').ObjectId;
 //链接mongodb数据库地址
 var url = 'mongodb://127.0.0.1:27017';
 
@@ -221,6 +223,34 @@ router.post('/register',function(req,res){
 
 
 // 删除数据 localhost:3000/users/delete
-
+router.get('/delete',function(req,res){
+  var id = req.query.id;
+  
+  MongoClient.connect(url, {useNewUrlParser : true}, function(err,client){
+    if(err){
+      res.render('error',{
+        message : '连接数据库失败',
+        error : err
+      })
+    }else{
+      var db = client.db('nodeProject');
+      db.collection('user').deleteOne({
+        _id: ObjectId(id)
+      }, function (err,data) {
+        if (err) {
+          res.render('error', {
+            message: '删除失败',
+            error: err
+          })
+        } else {
+          console.log(id)
+          res.redirect('/users');
+        }
+        client.close();
+      })
+    }
+  })
+  
+})
 
 module.exports = router;
