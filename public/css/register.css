@@ -10,13 +10,13 @@
   padding-right: 5px;
 }
 
-.look {
+.lookpwd, .looksurepwd {
   color: #8297bd;
   position: absolute;
   right: 4px;
   bottom: -31px;
   cursor: pointer;
 }
-.look:hover {
+.lookpwd:hover, .looksurepwd:hover {
   color: #000;
 }
