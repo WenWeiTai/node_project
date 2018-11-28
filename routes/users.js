@@ -12,7 +12,96 @@ var url = 'mongodb://127.0.0.1:27017';
 
 /* 用户管理页面： localhost:3000/users */
 router.get('/', function(req, res, next) {
-  //链接数据库----- { useNewUrlParser: true } 关闭新url版本的警告
+  //分页功能
+  //前端发送的 第几页 页条数   localhost:3000/users/?page=2&pageSize=3
+  //后端查询的 总页数 总条数
+  /* 
+  
+  页条数：pageSize  3   url
+  总条数：totalSize 10  db.user.find()
+  总页数: totalPage 4   Math.ceil(totalSize / pageSize) 
+  第几页：page     
+    1   limit(3).skip(0)  ----> page * pageSize - pageSize
+    2   limit(3).skip(3)  ----> page * pageSize - pageSize
+    3   limit(3).skip(6)  ----> page * pageSize - pageSize
+  
+  */
+//  需要查前端传递的第几页和查总条数 两个异步操作，用async
+// localhost:3000/users/?page=2&pageSize=3
+  var page = Number(req.query.page) || 1;
+  var pageSize = Number(req.query.pageSize) || 3;
+  var totalSize = 0;
+
+  MongoClient.connect(url, {useNewUrlParser : true}, function(err,client){
+    if(err){
+      res.render('error',{
+        message : '连接数据库失败',
+        error : err
+      })
+      return
+    }
+
+    var db = client.db('nodeProject');
+    async.series([
+      //查询总条数
+      function (cb) {
+        db.collection('user').find().count(function(err,num){
+          if(err){
+            cb(err);
+          }else{
+            totalSize = num;
+            cb(null);
+          }
+        })
+      },
+
+      function (cb) {
+        //根据前端请求查询对应数据
+        db.collection('user').find().limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err,data){
+          if(err){
+            cb(err)
+          }else{
+            //拿到数据
+            cb(null,data)
+          }
+        });
+
+      }
+
+    ],function(err,result){
+      if(err){
+        res.render('error',{
+          message : '出错',
+          error : err
+        })
+        return;
+      }
+
+      var totalPage = Math.ceil(totalSize / pageSize)
+      res.render('users',{
+        userDb : result[1],
+        //总页数
+        totalPage : totalPage,
+        //页条数
+        pageSize : pageSize,
+        //第几页
+        page : page
+
+      });
+      client.close();
+    })
+  })
+
+
+
+
+
+
+
+
+
+
+  /* //链接数据库----- { useNewUrlParser: true } 关闭新url版本的警告
   MongoClient.connect(url, { useNewUrlParser: true } ,function(err,client){
     if(err){
       // console.log('链接数据库失败',err)
@@ -44,7 +133,7 @@ router.get('/', function(req, res, next) {
     })
     //关闭数据库
     client.close();
-  })
+  }) */
 });
 
 /* 登陆操作 localhost:3000/users/login */

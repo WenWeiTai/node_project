@@ -103,17 +103,22 @@
             <nav aria-label="Page navigation">
               <ul class="pagination">
                 <li>
-                  <a href="#" aria-label="Previous">
+                  <a href="/users/?page=<%= page - 1 < 1 ? 1 : page - 1 %>&pageSize=<%= pageSize %>" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                <!-- 
+                  后台传递总页数、第几页、页条数
+                  totalPage 总页数：显示几页
+                  page 第几页：高亮 第几页
+                  pageSize 页条数：一页渲染几条数据
+                  
+                -->
+                <% for(var i = 0; i < totalPage; i++){ %>
+                  <li class="<%= page == (i + 1) ? 'active' : '' %>"><a href="/users/?page=<%= i + 1 %>&pageSize=<%= pageSize %>"><%= i + 1 %></a></li>
+                <% } %>
                 <li>
-                  <a href="#" aria-label="Next">
+                  <a href="/users/?page=<%= page + 1 > totalPage ? totalPage : page + 1%>&pageSize=<%= pageSize %>" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                   </a>
                 </li>
