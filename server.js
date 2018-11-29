@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
+var async = require("async");
 var MongoClient = require("mongodb").MongoClient;
 var url = "mongodb://127.0.0.1:27017";
 
@@ -119,64 +120,70 @@ app.post("/api/register", function (req, res) {
             var db = client.db("nodeProject");
 
             //串行无关联
-            // async.series(
-            //     [
-            //         // 查询是否存在
-            //         function (cb) {
-            //             db.collection("user")
-            //                 .find({
-            //                     username: username
-            //                 })
-            //                 .count(function (err, num) {
-            //                     if (err) {
-            //                         cb(err);
-            //                     } else if (num > 0) {
-            //                         //查询有条数，证明已经注册过
-            //                         cb(new Error("此用户已注册"));
-            //                     } else {
-            //                         //可以注册
-            //                         cb(null);
-            //                     }
-            //                 });
-            //         },
-            //         // 不存在则插入数据
-            //         function (cb) {
-            //             db.collection("user").insertOne(
-            //                 {
-            //                     username: username,
-            //                     password: password,
-            //                     nickname: nickname,
-            //                     phone: phone,
-            //                     age: age,
-            //                     sex: sex,
-            //                     isAdmin: isAdmin
-            //                 },
-            //                 function (err) {
-            //                     if (err) {
-            //                         cb(err);
-            //                     } else {
-            //                         cb(null);
-            //                     }
-            //                 }
-            //             );
-            //         }
-            //     ],
-            //     function (err, result) {
-            //         if (err) {
-            //             res.json ({
-            //                 code : -1,
-            //                 msg : err
-            //             })
-            //         } else {
-            //             //数据插入成功返回结果
-            //             res.json ({
-            //                 code : 1,
-            //                 msg : '注册成功'
-            //             })
-            //         }
-            //         client.close();
-            //     }
-            // );
+            async.series(
+                [
+                    // 查询是否存在
+                    function (cb) {
+                        db.collection("user")
+                            .find({
+                                username: username
+                            })
+                            .count(function (err, num) {
+                                if (err) {
+                                    cb({
+                                        code : -1,
+                                        msg : '查询用户失败'
+                                    });
+                                } else if (num > 0) {
+                                    //查询有条数，证明已经注册过
+                                    cb({
+                                        code : -1,
+                                        msg : '此用户已存在'
+                                    });
+                                } else {
+                                    //可以注册
+                                    cb(null);
+                                }
+                            });
+                    },
+                    // 不存在则插入数据
+                    function (cb) {
+                        db.collection("user").insertOne(
+                            {
+                                username: username,
+                                password: password,
+                                nickname: nickname,
+                                phone: phone,
+                                age: age,
+                                sex: sex,
+                                isAdmin: isAdmin
+                            },
+                            function (err) {
+                                if (err) {
+                                    cb({
+                                        code : -1,
+                                        msg : '注册失败'
+                                    });
+                                } else {
+                                    cb(null);
+                                }
+                            }
+                        );
+                    }
+                ],
+                function (err, result) {
+                    if (err) {
+                        res.json (err);
+                    } else {
+                        //数据插入成功返回结果
+                        res.json ({
+                            code : 1,
+                            msg : '注册成功'
+                        })
+                    }
+                    client.close();
+                }
+            );
         }
     );
 });
