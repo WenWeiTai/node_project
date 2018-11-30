@@ -285,6 +285,69 @@ app.get("/api/users", function(req,res) {
 // 搜索功能
 // 前端ajax请求接口 ->  http://localhost:3000/api/search
 app.get("/api/search",function(req,res){
+    var page = Number(req.query.page) || 1;
+    var pageSize = Number(req.query.pageSize) || 5;
+    var totalSize = 0;
+    var nickname = req.query.nickname;
+    MongoClient.connect(url, { useNewUrlParser : true }, function(err,client){
+        if(err){
+            res.json({
+                code : -1,
+                msg : '服务器连接失败'
+            })
+        }else{
+            var db = client.db('nodeProject');
+            async.series([
+                //查询匹配到的总条数
+                function(cb){
+                    db.collection('user').find({
+                        nickname : new RegExp(nickname)
+                    }).count(function(err,num){
+                        if(err){
+                            cb({
+                                code : -1,
+                                msg : '查询数据失败'
+                            })
+                        }else{
+                            //将查询的总数据条数赋值
+                            totalSize = num;
+                            cb(null);
+                        }
+                    })
+                },
+                //查询请求的页数数据
+                function(cb){
+                    db.collection('user').find({
+                        nickname : new RegExp(nickname)
+                    }).limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err,data){
+                        if(err){
+                            cb({
+                                code : -1,
+                                msg : '请求数据失败'
+                            })
+                        }else{
+                            //将查询的页数数据带到异步流程最终结果
+                            cb(null,data)
+                        }
+                    })
+                }
+            ],function(err,result){
+                if(err){
+                    res.json(err)
+                }else{
+                    res.json({
+                        code : 1,
+                        data : result[1],
+                        totalSize : totalSize,
+                        totalPage :  Math.ceil(totalSize / pageSize),
+                    })
+                }
+                client.close();
+            })
+        }
+    })
+})
+/* app.get("/api/search",function(req,res){
     var nickname = req.query.nickname;
     MongoClient.connect(url, { useNewUrlParser : true }, function(err,client){
         if(err){
@@ -314,11 +377,40 @@ app.get("/api/search",function(req,res){
             })
         }
     })
-})
+}) */
 
 // 删除功能
 // 前端ajax请求接口 ->  http://localhost:3000/api/delete
 app.get("/api/delete",function(req,res){
+    var id = req.query._id;
+    MongoClient.connect(url,{ useNewUrlParser : true }, function(err,client){
+        if(err){
+            res.json({
+                code : -1,
+                msg : '服务器连接失败'
+            })
+        }else{
+            var db = client.db('nodeProject');
+            db.collection('user').deleteOne({
+                _id: ObjectId(id)
+            },function(err,data){
+                if(err){
+                    res.json({
+                        code : -1,
+                        msg : '删除数据失败'
+                    })
+                }else{
+                    res.json({
+                        code : 1,
+                        msg : '删除成功'
+                    })
+                }
+            })
+        }
+        client.close();
+    })
+})
+/* app.get("/api/delete",function(req,res){
     var username = req.query.user;
     MongoClient.connect(url,{ useNewUrlParser : true }, function(err,client){
         if(err){
@@ -346,7 +438,7 @@ app.get("/api/delete",function(req,res){
         }
         client.close();
     })
-})
+}) */
 
 //============================================================// 手机管理接口
 
