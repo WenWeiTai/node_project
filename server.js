@@ -496,13 +496,11 @@ app.post("/api/addPhone",saveTmp.single('imgFile'),function(req,res){
 })
 
 
-app.listen("3000");
-console.log("服务器启动成功");
 
 //============================================================// 品牌管理接口
 
 //请求数据
-app.get("/api/phoneDate", function(req,res) {
+app.get("/api/brandDate", function(req,res) {
     var page = Number(req.query.page) || 1;
     var pageSize = Number(req.query.pageSize) || 3;
     var totalSize = 0;
@@ -519,7 +517,7 @@ app.get("/api/phoneDate", function(req,res) {
             async.series([
                 //查询总条数
                 function(cb){
-                    db.collection('phone').find().count(function(err,num){
+                    db.collection('brand').find().count(function(err,num){
                         if(err){
                             cb({
                                 code : -1,
@@ -534,7 +532,7 @@ app.get("/api/phoneDate", function(req,res) {
                 },
                 //查询请求的页数数据
                 function(cb){
-                    db.collection('phone').find().limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err,data){
+                    db.collection('brand').find().limit(pageSize).skip(page * pageSize - pageSize).toArray(function(err,data){
                         if(err){
                             cb({
                                 code : -1,
@@ -565,7 +563,7 @@ app.get("/api/phoneDate", function(req,res) {
 })
 
 //删除
-app.get("/api/phoneDelete",function(req,res){
+app.get("/api/brandDelete",function(req,res){
     var id = req.query.id; 
     console.log(id)
     MongoClient.connect(url,{ useNewUrlParser : true }, function(err,client){
@@ -576,7 +574,7 @@ app.get("/api/phoneDelete",function(req,res){
             })
         }else{
             var db = client.db('nodeProject');
-            db.collection('phone').deleteOne({
+            db.collection('brand').deleteOne({
                 _id: ObjectId(id)
             },function(err,data){
                 if(err){
@@ -597,8 +595,8 @@ app.get("/api/phoneDelete",function(req,res){
 })
 
 
-//添加手机
-app.post("/api/addPhone",saveTmp.single('imgFile'),function(req,res){
+//添加品牌
+app.post("/api/addbrand",saveTmp.single('imgFile'),function(req,res){
     console.log(req.file);
     console.log(req.body);
     var filename = 'images/' + new Date().getTime() + '_' + req.file.originalname;
@@ -617,12 +615,9 @@ app.post("/api/addPhone",saveTmp.single('imgFile'),function(req,res){
                 })
             }
             var db = client.db('nodeProject');
-            db.collection('phone').insertOne({
+            db.collection('brand').insertOne({
                 imgSrc : 'http://localhost:3000/public/' + filename,
-                model : req.body.pName,
                 brand : req.body.pBrand,
-                price : req.body.pPrice,
-                secondHand : req.body.pSecondPrice
             },function(err){
                 if(err){
                     res.json({
