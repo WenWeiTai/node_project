@@ -480,7 +480,7 @@ app.get("/api/phoneDelete",function(req,res){
 })
 
 
-//添加手机
+//添加手机信息
 app.post("/api/addPhone",saveTmp.single('imgFile'),function(req,res){
     console.log(req.file);
     console.log(req.body);
@@ -530,7 +530,6 @@ app.post("/api/addPhone",saveTmp.single('imgFile'),function(req,res){
 })
 
 //修改信息
-
 app.post("/api/updataPhone",saveTmp.single('imgFile'),function(req,res){
     var _id = req.body._id;
     var filename = 'images/' + new Date().getTime() + '_' + req.file.originalname;
@@ -676,8 +675,7 @@ app.get("/api/brandDelete",function(req,res){
     })
 })
 
-
-//添加品牌
+//添加品牌信息
 app.post("/api/addbrand",saveTmp.single('imgFile'),function(req,res){
     console.log(req.file);
     console.log(req.body);
@@ -723,6 +721,54 @@ app.post("/api/addbrand",saveTmp.single('imgFile'),function(req,res){
     }
 })
 
+//修改品牌
+app.post("/api/updataBrand",saveTmp.single('imgFile'),function(req,res){
+    var _id = req.body._id;
+    var filename = 'images/' + new Date().getTime() + '_' + req.file.originalname;
+    var newFileName = path.resolve(__dirname, './public/',filename);
+
+    try {
+        var data = fs.readFileSync(req.file.path);
+        fs.writeFileSync(newFileName, data);
+        fs.unlinkSync(req.file.path);
+        //写入数据库
+        MongoClient.connect(url,{useNewUrlParser:true},(err,client)=>{
+            if(err){
+                res.json({
+                    code : -1,
+                    msg : '连接服务器失败'
+                })
+            }
+            var db = client.db('nodeProject');
+            db.collection('brand').updateOne({_id : ObjectId(_id)},{$set : {
+                    imgSrc : 'http://localhost:3000/public/' + filename,
+                    model : req.body.pName,
+                    brand : req.body.pBrand,
+                    price : req.body.pPrice,
+                    secondHand : req.body.pSecondPrice
+                }}
+            ,function(err){
+                if(err){
+                    res.json({
+                        code : -1,
+                        msg : '修改失败'
+                    })
+                }else{
+                    res.json({
+                        code : 1,
+                        msg : '修改成功'
+                    })
+                }
+                client.close();
+            })
+        })
+    } catch (error) {
+        res.json({
+            code : -1,
+            msg : error
+        })
+    }
+})
 
 app.listen("3000");
 console.log("服务器启动成功");
