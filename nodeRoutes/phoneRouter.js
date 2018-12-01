@@ -1,5 +1,4 @@
 var express = require("express");
-var bodyParser = require("body-parser");
 var async = require("async");
 var MongoClient = require("mongodb").MongoClient;
 var ObjectId = require('mongodb').ObjectId;

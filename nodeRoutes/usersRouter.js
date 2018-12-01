@@ -1,15 +1,9 @@
 var express = require("express");
-var bodyParser = require("body-parser");
 var async = require("async");
 var MongoClient = require("mongodb").MongoClient;
 var ObjectId = require('mongodb').ObjectId;
 var multer = require('multer');
 var url = "mongodb://127.0.0.1:27017";
-var fs = require('fs');
-var path = require('path');
-var saveTmp = multer({
-    dest : 'C:/tmp'
-})
 
 var router = express.Router();
 
