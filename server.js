@@ -347,37 +347,7 @@ app.get("/api/search",function(req,res){
         }
     })
 })
-/* app.get("/api/search",function(req,res){
-    var nickname = req.query.nickname;
-    MongoClient.connect(url, { useNewUrlParser : true }, function(err,client){
-        if(err){
-            res.json({
-                code : -1,
-                msg : '服务器连接失败'
-            })
-        }else{
-            var db = client.db('nodeProject');
-            db.collection('user').find({
-                nickname : new RegExp(nickname)
-            }).toArray(function(err,result){
-                if(err){
-                    res.json({
-                        code : -1,
-                        msg : '查询失败'
-                    })
-                }else{
-                    //模糊查询成功
-                    res.json({
-                        code : 1,
-                        msg : '查询成功',
-                        data : result
-                    })
-                }
-                client.close();
-            })
-        }
-    })
-}) */
+
 
 // 删除功能
 // 前端ajax请求接口 ->  http://localhost:3000/api/delete
@@ -410,35 +380,7 @@ app.get("/api/delete",function(req,res){
         client.close();
     })
 })
-/* app.get("/api/delete",function(req,res){
-    var username = req.query.user;
-    MongoClient.connect(url,{ useNewUrlParser : true }, function(err,client){
-        if(err){
-            res.json({
-                code : -1,
-                msg : '服务器连接失败'
-            })
-        }else{
-            var db = client.db('nodeProject');
-            db.collection('user').deleteOne({
-                username : username
-            },function(err,data){
-                if(err){
-                    res.json({
-                        code : -1,
-                        msg : '删除数据失败'
-                    })
-                }else{
-                    res.json({
-                        code : 1,
-                        msg : '删除成功'
-                    })
-                }
-            })
-        }
-        client.close();
-    })
-}) */
+
 
 //============================================================// 手机管理接口
 
@@ -588,10 +530,9 @@ app.post("/api/addPhone",saveTmp.single('imgFile'),function(req,res){
 })
 
 //修改信息
-/* 
- 需要查询后才能修改——需要Id(未完成)
-*/
+
 app.post("/api/updataPhone",saveTmp.single('imgFile'),function(req,res){
+    var _id = req.body._id;
     var filename = 'images/' + new Date().getTime() + '_' + req.file.originalname;
     var newFileName = path.resolve(__dirname, './public/',filename);
 
@@ -608,27 +549,28 @@ app.post("/api/updataPhone",saveTmp.single('imgFile'),function(req,res){
                 })
             }
             var db = client.db('nodeProject');
-            db.collection('phone').updateOne({
-                imgSrc : 'http://localhost:3000/public/' + filename,
-                model : req.body.pName,
-                brand : req.body.pBrand,
-                price : req.body.pPrice,
-                secondHand : req.body.pSecondPrice
-            },function(err){
+            db.collection('phone').updateOne({_id : ObjectId(_id)},{$set : {
+                    imgSrc : 'http://localhost:3000/public/' + filename,
+                    model : req.body.pName,
+                    brand : req.body.pBrand,
+                    price : req.body.pPrice,
+                    secondHand : req.body.pSecondPrice
+                }}
+            ,function(err){
                 if(err){
                     res.json({
                         code : -1,
                         msg : '修改失败'
                     })
+                }else{
+                    res.json({
+                        code : 1,
+                        msg : '修改成功'
+                    })
                 }
-                res.json({
-                    code : 1,
-                    msg : '成功'
-                })
                 client.close();
-            })   
+            })
         })
-
     } catch (error) {
         res.json({
             code : -1,
