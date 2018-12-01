@@ -507,7 +507,7 @@ app.get("/api/phoneDate", function(req,res) {
 
 //删除
 app.get("/api/phoneDelete",function(req,res){
-    var id = req.query.id; 
+    var id = req.query._id; 
     console.log(id)
     MongoClient.connect(url,{ useNewUrlParser : true }, function(err,client){
         if(err){
@@ -704,7 +704,7 @@ app.get("/api/brandDate", function(req,res) {
 
 //删除
 app.get("/api/brandDelete",function(req,res){
-    var id = req.query.id; 
+    var id = req.query._id; 
     console.log(id)
     MongoClient.connect(url,{ useNewUrlParser : true }, function(err,client){
         if(err){
